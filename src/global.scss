@@ -26,25 +26,10 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 
-/*
-.alert-message.sc-ion-alert-md, .alert-input-group.sc-ion-alert-md ion-list {
-    background-color: var(--ion-color-danger)
+.alert-modal .modal-wrapper {
+    width: 250px;
+    height: 355px;
 }
-
-.alert-message.sc-ion-alert-md, .alert-input-group.sc-ion-alert-md ion-item {
-    background-color: var(--ion-color-danger)
-}
-
-.alert-message.sc-ion-alert-md, .alert-input-group.sc-ion-alert-md.example-viewport {
-    height: 150px;
-    width: 200px;
-    // border: 1px solid black;
-}
-
-.alert-message.sc-ion-alert-md, .alert-input-group.sc-ion-alert-md.example-item {
-    height: 150px;
-}
-*/
 
 .example-viewport {
     height: 50px;

@@ -10,16 +10,18 @@ import { IonicModule } from '@ionic/angular';
 // Project
 import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
+import { AlertModalComponent } from '../modals/alert-modal/alert-modal.component';
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    HomePageRoutingModule,
-    ScrollingModule
-  ],
-  declarations: [HomePage]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        HomePageRoutingModule,
+        ScrollingModule
+    ],
+    declarations: [HomePage, AlertModalComponent],
+    entryComponents: [AlertModalComponent]
 })
 export class HomePageModule {}

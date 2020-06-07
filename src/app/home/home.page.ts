@@ -2,7 +2,8 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, TemplateRef, AfterViewInit } from '@angular/core';
 
 // Ionic
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
+import { AlertModalComponent } from '../modals/alert-modal/alert-modal.component';
 
 @Component({
     selector: 'app-home',
@@ -15,7 +16,7 @@ export class HomePage implements OnInit , AfterViewInit {
     @ViewChild('item', { read: TemplateRef }) template: TemplateRef<any>;
     items: any;
 
-    constructor(private alertController: AlertController) {}
+    constructor(private alertController: AlertController, private modalController: ModalController) {}
 
     ngOnInit() {
         this.items = Array.from({length: 10000}).map((_, i) => `Item ${i}`);
@@ -27,6 +28,16 @@ export class HomePage implements OnInit , AfterViewInit {
 
     onClickItem() {
         console.log('onClickItem');
+    }
+
+    async presentAlertModal() {
+        const componentProps = { modalProps: { } };
+        const modal = await this.modalController.create({
+            component: AlertModalComponent,
+            componentProps,
+            cssClass: 'alert-modal'
+        });
+        return await modal.present();
     }
 
     // Technique 1. Virtual scrolling.

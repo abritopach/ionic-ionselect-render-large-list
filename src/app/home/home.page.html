@@ -40,7 +40,7 @@
                 <ion-icon slot="end" name="caret-down-outline"></ion-icon>
             </ion-item>
 
-            <ion-item>
+            <ion-item (click)="presentAlertModal()">
                 <ion-label>List using 2. Manual rendering (using Angular API)</ion-label>
                 <span slot="end">Select item</span>
                 <ion-icon slot="end" name="caret-down-outline"></ion-icon>
@@ -57,6 +57,7 @@
         </ion-card-content>
     </ion-card>
 
+    <!--
     <ng-container #itemsContainer></ng-container>
 
     <ng-template #item let-item="item">
@@ -64,5 +65,6 @@
             Item {{ item.id }}
         </ion-item>
     </ng-template>
+    -->
 
 </ion-content>

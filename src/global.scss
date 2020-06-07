@@ -26,6 +26,7 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 
+/*
 .alert-message.sc-ion-alert-md, .alert-input-group.sc-ion-alert-md ion-list {
     background-color: var(--ion-color-danger)
 }
@@ -35,11 +36,22 @@
 }
 
 .alert-message.sc-ion-alert-md, .alert-input-group.sc-ion-alert-md.example-viewport {
-    height: 50px;
+    height: 150px;
     width: 200px;
     // border: 1px solid black;
 }
 
 .alert-message.sc-ion-alert-md, .alert-input-group.sc-ion-alert-md.example-item {
+    height: 150px;
+}
+*/
+
+.example-viewport {
+    height: 50px;
+    width: 200px;
+    // border: 1px solid black;
+}
+
+.example-item {
     height: 50px;
 }

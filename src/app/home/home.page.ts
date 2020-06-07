@@ -1,5 +1,5 @@
 // Angular
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, TemplateRef, AfterViewInit } from '@angular/core';
 
 // Ionic
 import { AlertController } from '@ionic/angular';
@@ -9,18 +9,30 @@ import { AlertController } from '@ionic/angular';
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit{
+export class HomePage implements OnInit , AfterViewInit {
 
+    @ViewChild('itemsContainer', {static: true, read: ViewContainerRef }) container: ViewContainerRef;
+    @ViewChild('item', { read: TemplateRef }) template: TemplateRef<any>;
     items: any;
 
     constructor(private alertController: AlertController) {}
 
     ngOnInit() {
-        this.items = Array.from({length: 100000}).map((_, i) => `Item ${i}`);
+        this.items = Array.from({length: 10000}).map((_, i) => `Item ${i}`);
     }
 
+    ngAfterViewInit() {
+        this.buildData(10000);
+    }
+
+    onClickItem() {
+        console.log('onClickItem');
+    }
+
+    // Technique 1. Virtual scrolling.
     async presentAlert() {
 
+        /*
         let itemsList = ``;
 
         this.items.map((item) => {
@@ -32,6 +44,17 @@ export class HomePage implements OnInit{
         });
 
         const message = `<ion-list>${itemsList}</ion-list>`;
+        */
+
+        let itemsList = '';
+
+        this.items.map((item) => {
+            itemsList +=
+            `<div class="example-item" (click)="onClickItem()">${ item}</div>
+            `;
+        });
+
+        const message = `<cdk-virtual-scroll-viewport class="example-viewport" itemSize="50">${itemsList}</cdk-virtual-scroll-viewport>`;
 
         const alert = await this.alertController.create({
             header: 'List virtual scrolling',
@@ -55,6 +78,20 @@ export class HomePage implements OnInit{
             ]
         });
         await alert.present();
+    }
+
+    // Technique 2. Manual rendering.
+    buildData(length: number) {
+        const start = 0;
+        const end = start + length;
+        for (let n = start; n <= end; n++) {
+            this.container.createEmbeddedView(this.template, {
+                item: {
+                id: n,
+                label: Math.random()
+                },
+            });
+        }
     }
 
 }

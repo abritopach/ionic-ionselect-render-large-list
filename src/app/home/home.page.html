@@ -21,6 +21,7 @@
                         <h2>Sample project that shows an overview of the available techniques to render large lists of items with Ionic & Angular.</h2>
                         <p>Techniques</p>
                         <p>1. Virtual Scrolling (using the Angular CDK)</p>
+                        <p>2. Manual rendering (using Angular API)</p>
                     </ion-text>
                 </ion-item>
             </ion-card-title>
@@ -40,28 +41,28 @@
             </ion-item>
 
             <ion-item>
-                <ion-label>List using 1. Virtual Scrolling (using the Angular CDK)</ion-label>
-                <!--
-                <ion-select placeholder="Select item">
-                    <ion-select-option *ngFor="let item of items" [value]="item">{{ item }}</ion-select-option>
-                </ion-select>
-                -->
+                <ion-label>List using 2. Manual rendering (using Angular API)</ion-label>
+                <span slot="end">Select item</span>
+                <ion-icon slot="end" name="caret-down-outline"></ion-icon>
+            </ion-item>
 
+            <!--
+            <ion-item>
+                <ion-label>List using 1. Virtual Scrolling (using the Angular CDK)</ion-label>
                 <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
                     <div *cdkVirtualFor="let item of items" class="example-item">{{ item}}</div>
                 </cdk-virtual-scroll-viewport>
             </ion-item>
+            -->
         </ion-card-content>
     </ion-card>
 
-    <!--
-    <cdk-virtual-scroll-viewport itemSize="50">
+    <ng-container #itemsContainer></ng-container>
 
-        <li *cdkVirtualFor="let item of items">
-            {{ item }}
-        </li>
-    </cdk-virtual-scroll-viewport>
-    -->
-
+    <ng-template #item let-item="item">
+        <ion-item>
+            Item {{ item.id }}
+        </ion-item>
+    </ng-template>
 
 </ion-content>
